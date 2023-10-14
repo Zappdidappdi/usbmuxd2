@@ -269,10 +269,10 @@ void Client::processData(usbmuxd_header *hdr){
                 p_rsp = plist_new_dict();
                 {
                     char *plistbin = NULL;
-                    uint32_t plistbin_len = 0;
                     cleanup([&]{
-                        safeFreeCustom(plistbin, plist_to_bin_free);
+						uint32_t plistbin_len = 0;
                     });
+                    uint32_t plistbin_len = 0;
                     plist_to_bin(p_devrecord, &plistbin, &plistbin_len);
                     plist_dict_set_item(p_rsp, "PairRecordData", plist_new_data(plistbin, plistbin_len));
                 }
